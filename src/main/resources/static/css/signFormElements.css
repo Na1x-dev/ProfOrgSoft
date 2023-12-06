@@ -5,10 +5,10 @@
     height: 60px;
     margin-bottom: 15px;
     font-size: 15px;
-    background-color: #444444;
+    background-color: var(--bg-color-3);
     padding-left: 5%;
     padding-right: 5%;
-    color: #dddddd;
+    color: var(--font-color-1);
     border: 0;
     border-radius: 5px;
 }
@@ -16,5 +16,5 @@
 .form-heading {
     margin: 20px;
     font-size: 25px;
-    color: #dddddd;
+    color: var(--font-color-1);
 }

@@ -1,10 +1,21 @@
+:root {
+    --bg-color-1: #222;
+    --bg-color-2: #333;
+    --bg-color-3: #444;
+    --bg-color-4: #555;
+    --font-color-1: #ddd;
+    --font-color-2: #eee;
+    --font-color-3: #fff;
+    --border-color: #777;
+}
+
 body{
     font-family: "Montserrat";
     font-weight: 400;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #222222;
+    background-color: var(--bg-color-1);
 }
 
 .container{
@@ -19,7 +30,7 @@ body{
 }
 
 .form-log-in {
-    background-color: #333333;
+    background-color: var(--bg-color-2);
     width: 500px;
     height: 360px;
     position: absolute;
@@ -32,8 +43,8 @@ body{
     margin-left: 5%;
     height: 60px;
     font-size: 15px;
-    color: #dddddd;
-    background-color: #444444;
+    color: var(--font-color-1);
+    background-color: var(--bg-color-3);
     border: 0;
     border-radius: 5px;
 }
@@ -44,17 +55,17 @@ body{
     margin-top: 25px;
     margin-left: 20px;
     margin-right: 30px;
-    color: #dddddd;
+    color: var(--font-color-1);
 }
 
 #log-in-button:hover{
-    color: #dddddd;
+    color: var(--font-color-1);
     cursor: pointer;
-    background-color: #555555;
+    background-color: var(--bg-color-4);
 }
 
 .has-error{
-    color: #dddddd;
+    color: var(--font-color-1);
     font-size: 15px;
     position: absolute;
     bottom: 0;

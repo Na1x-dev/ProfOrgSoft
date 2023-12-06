@@ -5,11 +5,11 @@
     right:0;
     top:50%;
     transform: translate(0, -50%);
-    background-color: #333333;
-    color:#eeeeee;
+    background-color: var(--bg-color-2);
+    color: var(--font-color-2);
     font-size:20px;
     border-radius: 10px;
-    border-color: #777777;
+    border-color: var(--border-color);
     padding: 20px;
     max-width:500px;
 }
@@ -23,8 +23,8 @@
 
 select, input{
     font-size: 15px;
-    background-color: #444444;
-    color: #dddddd;
+    background-color: var(--bg-color-3);
+    color: var(--font-color-2);
     border: 0;
     border-radius: 5px;
     margin: 5px;
@@ -38,13 +38,13 @@ select, input{
     font-size: 15px;
     border: 0;
     border-radius: 5px;
-    background-color: #444444;
-    color: #dddddd;
+    background-color: var(--bg-color-3);
+    color: var(--font-color-1);
     padding: 10px;
 }
 
 .dialog-button:hover, .open-dialog:hover{
-    background-color:#555555;
+    background-color:var(--bg-color-4);
     cursor: pointer;
 }
 
