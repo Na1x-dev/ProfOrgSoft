@@ -22,6 +22,30 @@
     <div th:replace="logInPage/logInForm :: container"></div>
 
 </main>
+<script>
+    function setTheme() {
+        if (localStorage.getItem('isDarkTheme') === 'true') {
+            document.documentElement.style.setProperty('--bg-color-1', '#222');
+            document.documentElement.style.setProperty('--bg-color-2', '#333');
+            document.documentElement.style.setProperty('--bg-color-3', '#444');
+            document.documentElement.style.setProperty('--bg-color-4', '#555');
+            document.documentElement.style.setProperty('--font-color-1', '#ddd');
+            document.documentElement.style.setProperty('--font-color-2', '#eee');
+            document.documentElement.style.setProperty('--font-color-3', '#fff');
+            document.documentElement.style.setProperty('--border-color', '#777');
+        } else if ((localStorage.getItem('isDarkTheme') === 'false')) {
+            document.documentElement.style.setProperty('--bg-color-1', '#ccc');
+            document.documentElement.style.setProperty('--bg-color-2', '#ddd');
+            document.documentElement.style.setProperty('--bg-color-3', '#eee');
+            document.documentElement.style.setProperty('--bg-color-4', '#fff');
+            document.documentElement.style.setProperty('--font-color-1', '#222');
+            document.documentElement.style.setProperty('--font-color-2', '#333');
+            document.documentElement.style.setProperty('--font-color-3', '#444');
+            document.documentElement.style.setProperty('--border-color', '#777');
+        }
+    }
+    setTheme();
+</script>
 </body>
 <!--<footer th:replace="commonElements/footer :: footer">someFooter</footer>-->
 </html>

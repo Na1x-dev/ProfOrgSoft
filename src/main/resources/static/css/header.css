@@ -1,5 +1,4 @@
 
-
 #header {
     padding: 10px;
     transition-duration: 0.2s;
@@ -11,7 +10,7 @@
     background-color: var(--bg-color-2);
 }
 
-.header-txt-container{
+.header-txt-container {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -21,11 +20,11 @@
     transition-duration: 0.2s;
 }
 
-header:hover .header-txt-container{
+header:hover .header-txt-container {
     opacity: 1;
 }
 
-.header-txt{
+.header-txt {
     font-weight: 700;
     font-size: 30px;
     color: var(--font-color-1);
@@ -58,14 +57,14 @@ header:hover .header-button {
     background-color: var(--bg-color-3);
 }
 
-.separator{
+.separator {
     height: 1px;
     background-color: var(--font-color-1);
     width: 95%;
     margin: 10px auto;
 }
 
-.theme-switcher-container{
+.theme-switcher-container {
     padding: 5px;
     display: flex;
     flex-direction: row;
@@ -74,7 +73,7 @@ header:hover .header-button {
     border-radius: 10px;
 }
 
-.switcher-button{
+.switcher-button {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -83,4 +82,9 @@ header:hover .header-button {
     width: 40px;
     border-radius: 5px;
     background-color: var(--bg-color-2);
+}
+
+.switcher-button{
+    background-color: var(--bg-color-3);
+    cursor: pointer;
 }

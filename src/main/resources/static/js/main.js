@@ -24,15 +24,17 @@ let switcherButtonDark = document.querySelector(".switcher-button-dark");
 
 
 switcherButtonDark.onclick = () => {
-    setTheme(true);
+    localStorage.isDarkTheme = 'true';
+    setTheme();
 }
 
 switcherButtonLight.onclick = () => {
-    setTheme(false);
+    localStorage.isDarkTheme = 'false';
+    setTheme();
 }
 
-function setTheme(themeFlag) {
-    if (themeFlag) {
+function setTheme() {
+    if (localStorage.getItem('isDarkTheme') === 'true') {
         switcherButtonDark.style.backgroundColor = "var(--bg-color-1)";
         switcherButtonLight.style.backgroundColor = "var(--bg-color-2)";
         document.documentElement.style.setProperty('--bg-color-1', '#222');
@@ -43,9 +45,7 @@ function setTheme(themeFlag) {
         document.documentElement.style.setProperty('--font-color-2', '#eee');
         document.documentElement.style.setProperty('--font-color-3', '#fff');
         document.documentElement.style.setProperty('--border-color', '#777');
-        localStorage.setItem('isDarkTheme', true);
-        console.log(localStorage.getItem('isDarkTheme'));
-    } else {
+    } else if ((localStorage.getItem('isDarkTheme') === 'false')) {
         switcherButtonLight.style.backgroundColor = "var(--bg-color-1)";
         switcherButtonDark.style.backgroundColor = "var(--bg-color-2)";
         document.documentElement.style.setProperty('--bg-color-1', '#ccc');
@@ -56,25 +56,18 @@ function setTheme(themeFlag) {
         document.documentElement.style.setProperty('--font-color-2', '#333');
         document.documentElement.style.setProperty('--font-color-3', '#444');
         document.documentElement.style.setProperty('--border-color', '#777');
-        localStorage.setItem('isDarkTheme', false);
-        console.log(localStorage.getItem('isDarkTheme'));
     }
 }
 
-function setStartTheme() {
-    setTheme(localStorage.getItem('isDarkTheme'));
-}
-
-function initLocalStorage(){
-    if(localStorage.getItem('isDarkTheme') == null ){
-        localStorage.setItem('isDarkTheme', false);
+function initLocalStorage() {
+    console.log(localStorage.getItem('isDarkTheme'));
+    if (localStorage.getItem('isDarkTheme') == null) {
+        localStorage.setItem('isDarkTheme', 'false');
     }
 }
 
-console.log(localStorage.getItem('isDarkTheme'));
-setStartTheme();
-// initLocalStorage();
-
+initLocalStorage();
+setTheme();
 
 for (let elem of document.getElementsByTagName('a')) {
     elem.style.transitionDuration = '0.2s';
@@ -83,3 +76,4 @@ for (let elem of document.getElementsByTagName('a')) {
 for (let elem of document.getElementsByTagName('button')) {
     elem.style.transitionDuration = '0.2s';
 }
+
