@@ -1,18 +1,26 @@
 <header th:unless="${checkUser.isAdmin()}" th:fragment="header" class="header" xmlns:th="">
     <div id="header">
+        <div class="header-txt-container">
+            <h1 class="header-txt">ProfOrgSoft</h1>
+            <div></div>
+        </div>
+        <div class="separator"></div>
         <a class="header-button" th:href="@{../../../../mainPage/index}">Сотрудники</a>
         <a class="header-button" th:href="@{../../../../childrenPage/index}">Дети сотрудников</a>
         <a class="header-button" th:href="@{../../../../unionMemPubOrgPage/index}">Сотрудники в общественных
             организациях</a>
         <a class="header-button" th:href="@{../../../../publicOrganizationsPage/index}">Общественные организации</a>
+        <div class="separator"></div>
         <a class="header-button" th:href="@{../../../../positionsPage/index}">Должности</a>
         <a class="header-button" th:href="@{../../../../unionMembersApplicationsPage/index}">Заявления членов
             профсоюза</a>
         <a class="header-button" th:href="@{../../../../applicationTypesPage/index}">Типы заявлений</a>
         <a class="header-button" th:href="@{../../../../paymentsAmountPage/index}">Суммы выплат</a>
+        <div class="separator"></div>
         <a class="header-button" th:href="@{../../../../groundsForFinPayPage/index}">Основания материальных выплат</a>
         <a class="header-button" th:href="@{../../../../meetingMinutesPage/index}">Протоколы заседаний</a>
         <a class="header-button" th:href="@{../../../../reportsPage/index}">Отчеты</a>
+        <div class="separator"></div>
         <a class="header-button" th:href="@{/logout}">Выход</a>
     </div>
 </header>
