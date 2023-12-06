@@ -42,11 +42,11 @@ header:hover .header-button {
 
 .header-button {
     display: block;
-    padding: 5px;
+    padding: 10px;
     font-size: 20px;
     text-decoration: none;
     color: var(--font-color-1);
-    margin: 5px;
+    margin: 0 5px;
     border-radius: 5px;
     overflow: hidden;
     white-space: nowrap;
@@ -63,4 +63,24 @@ header:hover .header-button {
     background-color: var(--font-color-1);
     width: 95%;
     margin: 10px auto;
+}
+
+.theme-switcher-container{
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    background-color: var(--bg-color-1);
+    border-radius: 10px;
+}
+
+.switcher-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    background-color: var(--bg-color-2);
 }
