@@ -103,6 +103,17 @@ public class UnionMember {
         return format.format(birthdate);
     }
 
+    public String getNameAndInitials() {
+        String name;
+        String patronymic;
+
+        if (this.name.isEmpty()) name = this.name;
+        else name = this.name.substring(0, 1);
+        if (this.patronymic.isEmpty()) patronymic = this.patronymic;
+        else patronymic = this.patronymic.substring(0, 1);
+        return this.surname + " " + name + ". " + patronymic + ".";
+    }
+
     @Override
     public String toString() {
         return "UnionMember{" +

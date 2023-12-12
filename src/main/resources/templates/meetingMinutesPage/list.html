@@ -6,12 +6,32 @@
                 <div class="some-text" th:text="'Новый протокол заседания'">
                 </div>
                 <div class="new-meeting-minute-inputs new-inputs">
-                    <input type="number" min="1" class="title-input new-meeting-minute-input" placeholder="Номер протокола"
+                    <input type="number" min="1" class="title-input new-meeting-minute-input"
+                           placeholder="Номер протокола"
                            autofocus required="required" th:field="${newMeetingMinute.meetingMinuteNumber}"/>
                     <input type="date" class="date-input new-meeting-minute-input" placeholder="Дата протокола"
                            autofocus="true" required="required" th:field="${newMeetingMinute.meetingMinuteDate}"/>
                     <input class="title-input new-meeting-minute-input" placeholder="Тема заседания"
                            autofocus required="required" th:field="${newMeetingMinute.meetingMinuteTheme}"/>
+                    <select required name="unionMember.unionMemberId">
+                        <option disabled value="" selected>Выберите секретаря</option>
+                        <option th:each="unionMember : ${unionMembers}" th:value="${unionMember.unionMemberId}"
+                                th:utext="${unionMember.getNameAndInitials()}"></option>
+                    </select>
+                    <select required name="unionMember.unionMemberId" onchange="
+let presentPeople = document.querySelector('.present-people');
+                                    presentPeople.textContent = this.text();
+">
+                        <option disabled value="" selected>Выберите присутствующего</option>
+                        <option th:each="unionMember : ${unionMembers}" th:value="${unionMember.unionMemberId}"
+                                th:utext="${unionMember.getNameAndInitials()}">
+<!--                                th:onClick="-->
+<!--                                    let presentPeople = document.querySelector('.present-people');-->
+<!--                                    presentPeople.textContent = this.value;-->
+<!--                                    console.log(this.value);"-->
+                        </option>
+                    </select>
+                    <div class="present-people">gays</div>
                 </div>
                 <div class="bottom-new-meeting-minute-buttons">
                     <button type="submit" class="confirm-add-new-meeting-minute-button dialog-button">Добавить</button>
@@ -40,7 +60,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="i : ${#numbers.sequence(meetingMinutesTable.size() - 1, 0, -1)}" th:with="meetingMinute=${meetingMinutesTable[i]}" class="table-row">
+        <tr th:each="i : ${#numbers.sequence(meetingMinutesTable.size() - 1, 0, -1)}"
+            th:with="meetingMinute=${meetingMinutesTable[i]}" class="table-row">
             <td style="text-align: center">
                 <div class="table-cell" th:text="${meetingMinute.meetingMinuteId}">
                 </div>
@@ -59,24 +80,30 @@
             </td>
 
 
-
             <td style="text-align: center" th:if="${checkUser.isAdmin()}">
                 <div class="table-cell">
                     <dialog id="update-dialog" class="update-dialog dialog">
                         <form th:fragment="update-meeting-minute-type-form" class="update-meeting-minute-type-container"
-                              th:action="@{'/meetingMinutesPage/index/update/'+${meetingMinute.meetingMinuteId}}" method="post">
+                              th:action="@{'/meetingMinutesPage/index/update/'+${meetingMinute.meetingMinuteId}}"
+                              method="post">
                             <div class="some-text" th:text="'Изменение протокола заседания'">
                             </div>
                             <div class="update-meeting-minute-type-inputs update-inputs">
-                                <input type="number" min="1" class="title-input update-meeting-minute-input" placeholder="Номер протокола"
-                                       autofocus required="required" th:value="${meetingMinute.meetingMinuteNumber}" name="meetingMinuteNumber"/>
-                                <input type="date" class="date-input update-meeting-minute-input" placeholder="Дата протокола"
-                                       autofocus="true" required="required" th:value="${meetingMinute.formatDateForChange()}" name="meetingMinuteDate"/>
+                                <input type="number" min="1" class="title-input update-meeting-minute-input"
+                                       placeholder="Номер протокола"
+                                       autofocus required="required" th:value="${meetingMinute.meetingMinuteNumber}"
+                                       name="meetingMinuteNumber"/>
+                                <input type="date" class="date-input update-meeting-minute-input"
+                                       placeholder="Дата протокола"
+                                       autofocus="true" required="required"
+                                       th:value="${meetingMinute.formatDateForChange()}" name="meetingMinuteDate"/>
                                 <input class="title-input update-meeting-minute-input" placeholder="Тема заседания"
-                                       autofocus required="required" th:value="${meetingMinute.meetingMinuteTheme}" name="meetingMinuteTheme"/>
+                                       autofocus required="required" th:value="${meetingMinute.meetingMinuteTheme}"
+                                       name="meetingMinuteTheme"/>
                             </div>
                             <div class="bottom-update-meeting-minute-type-buttons">
-                                <button type="submit" class="confirm-update-meeting-minute-type-button dialog-button">Изменить
+                                <button type="submit" class="confirm-update-meeting-minute-type-button dialog-button">
+                                    Изменить
                                 </button>
                                 <button type="button" class="close-update-dialog dialog-button">Отмена</button>
                             </div>

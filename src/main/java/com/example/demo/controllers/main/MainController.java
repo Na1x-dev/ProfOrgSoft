@@ -394,6 +394,8 @@ public class MainController {
     @GetMapping({"/meetingMinutesPage/index"})
     public String meetingMinutesPage(Model model, Principal user) {
         model.addAttribute("checkUser", userService.findByUsername(user.getName()));
+        model.addAttribute("unionMembers", unionMemberService.readAll());
+        System.out.println(unionMemberService.readAll());
         model.addAttribute("newMeetingMinute", new MeetingMinute());
         model.addAttribute("updateMeetingMinute", new MeetingMinute());
         model.addAttribute("meetingMinutes", meetingMinuteService.readAll());
