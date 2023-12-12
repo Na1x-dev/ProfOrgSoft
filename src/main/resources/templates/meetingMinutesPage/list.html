@@ -13,29 +13,35 @@
                            autofocus="true" required="required" th:field="${newMeetingMinute.meetingMinuteDate}"/>
                     <input class="title-input new-meeting-minute-input" placeholder="Тема заседания"
                            autofocus required="required" th:field="${newMeetingMinute.meetingMinuteTheme}"/>
-                    <select required name="unionMember.unionMemberId">
+                    <select required name="unionMember.unionMemberId"
+                            onchange="
+                                    let secretary = document.querySelector('.secretary');
+                                    secretary.textContent = this.options[this.value].text;
+                        ">
                         <option disabled value="" selected>Выберите секретаря</option>
                         <option th:each="unionMember : ${unionMembers}" th:value="${unionMember.unionMemberId}"
                                 th:utext="${unionMember.getNameAndInitials()}"></option>
                     </select>
-                    <select required name="unionMember.unionMemberId" onchange="
-let presentPeople = document.querySelector('.present-people');
-                                    presentPeople.textContent = this.text();
-">
-                        <option disabled value="" selected>Выберите присутствующего</option>
+                    <div class="secretary">gay1</div>
+                    <select required name="unionMember.unionMemberId"
+                            onchange="
+                                    let presentPeople = document.querySelector('.present-people');
+                                    console.log(presentPeople.text)
+                                    if(presentPeople.textContent === '') presentPeople.textContent = this.options[this.value].text;
+                                    else presentPeople.textContent = presentPeople.textContent + ', ' + this.options[this.value].text;
+                        ">
+                        <option disabled value="" selected>Выберите присутствующих</option>
+
                         <option th:each="unionMember : ${unionMembers}" th:value="${unionMember.unionMemberId}"
                                 th:utext="${unionMember.getNameAndInitials()}">
-<!--                                th:onClick="-->
-<!--                                    let presentPeople = document.querySelector('.present-people');-->
-<!--                                    presentPeople.textContent = this.value;-->
-<!--                                    console.log(this.value);"-->
                         </option>
                     </select>
-                    <div class="present-people">gays</div>
+                    <div class="present-people"></div>
                 </div>
                 <div class="bottom-new-meeting-minute-buttons">
                     <button type="submit" class="confirm-add-new-meeting-minute-button dialog-button">Добавить</button>
                     <button type="button" class="close-add-dialog dialog-button">Отмена</button>
+                    <button type="button" class="to-word-btn dialog-button">в docx</button>
                 </div>
             </form>
         </dialog>

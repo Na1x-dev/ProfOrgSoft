@@ -1,5 +1,6 @@
-// import {Document, Packer} from "docx";
-// import {saveAs} from "file-saver"
+
+
+
 
 function CallPrint(strid) {
     var prtContent = document.querySelector(strid);
@@ -112,3 +113,49 @@ function exportToExcel() {
     // generate XLSX file and save to local file
     XLSX.writeFile(wb, 'exported_data.xlsx');
 }
+
+const generate = () => {
+    const doc = new Document();
+
+    const paragraph = new Paragraph("Hello World");
+    const text1 = new TextRun(
+        `
+        
+        Белорусский профессиональный
+союз работников связи
+Первичная организация
+профсоюза работников
+УО «Брестский государственный
+колледж связи»
+ВЫПИСКА ИЗ ПРОТОКОЛА
+[дата]\t№ [номер]
+г. Брест
+заседания профсоюзного комитета
+Председатель: Н.В.Иванюшина
+Секретарь: [выбирается из сотрудников]
+Присутствовали: члены профсоюзного комитета – [выбирается из сотрудников, число зависит от выбранного количества в системе]
+Повестка дня:
+3. [тема заседания]
+3. СЛУШАЛИ: 
+[выбирается из сотрудников, число зависит от выбранного количества в системе] – [должность]
+РЕШИЛИ: 
+    1.  
+ГОЛОСОВАЛИ:\t«за» - [вводится в системе] чел.,
+\t«против» - [вводится в системе] чел.,
+\t\t«воздержался» - [вводится в системе] чел.
+Верно
+Председатель\tН.В.Иванюшина
+[дата]
+        `
+    ).bold();
+
+    paragraph.addRun(text1);
+
+    doc.addParagraph(paragraph);
+    const packer = new Packer();
+
+    packer.toBlob(doc).then(blob => saveAs(blob, "example.docx"));
+}
+
+const toWordButton = document.querySelector('.to-word-btn');
+toWordButton.addEventListener('click', generate);
