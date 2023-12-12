@@ -6,6 +6,7 @@
                   th:text="${sqlRequest.sqlString}" th:field="${sqlRequest.sqlString}"></textarea>
         <button class="send-sql-command" type="submit">Выполнить запрос</button>
         <a onClick="javascript:CallPrint('.table');" style="text-align: center;" title="Распечатать проект" class="send-sql-command">Распечатать</a>
+        <a id="export-to-excel-button" class="send-sql-command" onclick="exportToExcel()">Экспорт в Excel</a>
         <textarea class="sql-output sql-textarea" rows="3" readonly="readonly" th:text="${sqlRequest.error}"></textarea>
     </form>
     <table class="table">

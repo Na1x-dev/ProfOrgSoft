@@ -80,3 +80,35 @@ for (let elem of document.getElementsByTagName('button')) {
     elem.style.transitionDuration = '0.2s';
 }
 
+function exportToExcel() {
+    var table = document.querySelector('.table');
+    var headers = [];
+    var data = [];
+
+    // Extract headers
+    table.querySelectorAll('thead th').forEach(function (header) {
+        headers.push(header.innerText);
+    });
+
+    // Extract data, excluding columns with "Изменить" or "Удалить"
+    table.querySelectorAll('tbody tr').forEach(function (row) {
+        var rowData = [];
+        row.querySelectorAll('td').forEach(function (cell) {
+            var cellText = cell.innerText;
+            if (cellText !== "Изменить" && cellText !== "Удалить") {
+                rowData.push(cellText);
+            }
+        });
+        data.push(rowData);
+    });
+
+    // Create worksheet
+    var ws = XLSX.utils.aoa_to_sheet([headers].concat(data));
+
+    // Create workbook
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+    // generate XLSX file and save to local file
+    XLSX.writeFile(wb, 'exported_data.xlsx');
+}
