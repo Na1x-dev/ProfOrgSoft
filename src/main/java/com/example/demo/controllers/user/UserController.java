@@ -76,6 +76,7 @@ public class UserController {
         autoCreateEmptyParent();
         autoCreateEmptyMeetingMinute();
         autoCreateRetireePosition();
+        autoCreateEmptyUnionMember();
         if (securityService.isAuthenticated()) {
             return "redirect:/";
         }
@@ -130,6 +131,12 @@ public class UserController {
     public void autoCreateEmptyPosition() {
         if (positionService.readByTitle("") == null) {
             positionService.create(new Position());
+        }
+    }
+
+    public void autoCreateEmptyUnionMember() {
+        if (unionMemberService.readByName("") == null) {
+            unionMemberService.create(new UnionMember());
         }
     }
 
