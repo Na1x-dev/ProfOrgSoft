@@ -6,9 +6,11 @@
                 <div class="some-text" th:text="'Новый протокол заседания'">
                 </div>
                 <div class="new-meeting-minute-inputs new-inputs">
+
                     <input type="number" min="1" class="number-input title-input new-meeting-minute-input"
                            placeholder="Номер протокола"
                            autofocus required="required" th:field="${newMeetingMinute.meetingMinuteNumber}"/>
+
                     <input type="date" class="date-input new-meeting-minute-input" placeholder="Дата протокола"
                            autofocus="true" required="required" th:field="${newMeetingMinute.meetingMinuteDate}"/>
                     <input class="title-title-input title-input new-meeting-minute-input" placeholder="Тема заседания"
@@ -22,11 +24,10 @@
                         <option th:each="unionMember : ${unionMembers}" th:value="${unionMember.unionMemberId}"
                                 th:utext="${unionMember.getNameAndInitials()}"></option>
                     </select>
-                    <div class="secretary">gay1</div>
+                    <div class="secretary"></div>
                     <select required name="unionMember.unionMemberId"
                             onchange="
                                     let presentPeople = document.querySelector('.present-people');
-                                    console.log(this.options[options.selectedIndex].text);
                                     if(presentPeople.textContent === '') presentPeople.textContent = this.options[options.selectedIndex].text;
                                     else presentPeople.textContent = presentPeople.textContent + ', ' + this.options[options.selectedIndex].text;
                         ">
@@ -37,6 +38,30 @@
                         </option>
                     </select>
                     <div class="present-people"></div>
+                    <select required name="unionMember.unionMemberId"
+                            onchange="
+                                    let speakers = document.querySelector('.speakers');
+                                    if(speakers.textContent === '') speakers.textContent = this.options[options.selectedIndex].text;
+                                    else speakers.textContent = speakers.textContent + ', ' + this.options[options.selectedIndex].text;
+                        ">
+                        <option disabled value="" selected>Выберите выступающих</option>
+
+                        <option th:each="unionMember : ${unionMembers}" th:value="${unionMember.unionMemberId}"
+                                th:utext="${unionMember.getNameAndInitials()}">
+                        </option>
+                    </select>
+                    <div class="speakers"></div>
+
+<!--                    <p>За</p>-->
+                    <input type="number" min="1" class="number-input title-input new-meeting-minute-input voted-for"
+                           placeholder="за"/>
+<!--                    <p>Против</p>-->
+                    <input type="number" min="1" class="number-input title-input new-meeting-minute-input voted-against"
+                           placeholder="против"/>
+<!--                    <p>Воздержались</p>-->
+                    <input type="number" min="1" class="number-input title-input new-meeting-minute-input abstained"
+                           placeholder="воздержались"/>
+
                 </div>
                 <div class="bottom-new-meeting-minute-buttons">
                     <button type="submit" class="confirm-add-new-meeting-minute-button dialog-button">Добавить</button>

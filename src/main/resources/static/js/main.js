@@ -113,48 +113,54 @@ function exportToExcel() {
 const generate = () => {
     let doc = new Document();
 
+    let paragraph1 = new Paragraph().addRun(new TextRun('Председатель: ').bold().size(28));
+    let paragraph2 = new Paragraph().addRun(new TextRun('Секретарь: ').bold().size(28));
+    let paragraph3 = new Paragraph().addRun(new TextRun('Присутствовали: ').bold().size(28));
+    let paragraph4 = new Paragraph().addRun(new TextRun('ГОЛОСОВАЛИ: ').bold().size(28));
+
+
     const textArray = [
-        new TextRun('Белорусский профессиональный'),
-        new TextRun('союз работников связи'),
-        new TextRun(''),
-        new TextRun('Первичная организация'),
-        new TextRun('профсоюза работников'),
-        new TextRun('УО «Брестский государственный'),
-        new TextRun('колледж связи»'),
-        new TextRun(''),
-        new TextRun('ВЫПИСКА ИЗ ПРОТОКОЛА').bold(),
-        new TextRun(''),
-        new TextRun(document.querySelector('.date-input').value + '                № ' + document.querySelector('.number-input').value).bold(),
-        new TextRun(''),
-        new TextRun('г. Брест').bold(),
-        new TextRun(''),
-        new TextRun('заседания профсоюзного комитета'),
-        new TextRun(''),
-        new TextRun('Председатель: Н.В.Иванюшина'),
-        new TextRun('Секретарь: ' + document.querySelector('.secretary').textContent),
-        new TextRun('Присутствовали: члены профсоюзного комитета – '+document.querySelector('.present-people').textContent),
-        new TextRun('Повестка дня:'),
-        new TextRun('3. ' + document.querySelector('.title-title-input').value).tab(),
-        new TextRun('3. СЛУШАЛИ: '),
-        new TextRun(document.querySelector('.present-people').textContent),
-        new TextRun('РЕШИЛИ: '),
-        new TextRun('    1.  '),
-        new TextRun('ГОЛОСОВАЛИ: «за» - [вводится в системе] чел.,'),
-        new TextRun('            «против» - [вводится в системе] чел.,'),
-        new TextRun('            «воздержался» - [вводится в системе] чел.'),
-        new TextRun('Верно'),
-        new TextRun('Председатель                                               Н.В.Иванюшина'),
-        new TextRun(document.querySelector('.date-input').value)
+        new Paragraph().addRun(new TextRun('Белорусский профессиональный').size(28)),
+        new Paragraph().addRun(new TextRun('союз работников связи').size(28)),
+        new Paragraph().addRun(new TextRun('').size(28)),
+        new Paragraph().addRun(new TextRun('Первичная организация').size(28)),
+        new Paragraph().addRun(new TextRun('профсоюза работников').size(28)),
+        new Paragraph().addRun(new TextRun('УО «Брестский государственный').size(28)),
+        new Paragraph().addRun(new TextRun('колледж связи»').size(28)),
+        new Paragraph().addRun(new TextRun('')),
+        new Paragraph().addRun(new TextRun('ВЫПИСКА ИЗ ПРОТОКОЛА').bold().size(28)),
+        new Paragraph().addRun(new TextRun('')),
+        new Paragraph().addRun(new TextRun(document.querySelector('.date-input').value + '                № ' + document.querySelector('.number-input').value).bold().size(28)),
+        new Paragraph().addRun(new TextRun('')),
+        new Paragraph().addRun(new TextRun('г. Брест').bold().size(28)),
+        new Paragraph().addRun(new TextRun('')),
+        new Paragraph().addRun(new TextRun('заседания профсоюзного комитета').size(28)),
+        new Paragraph().addRun(new TextRun('')),
+        paragraph1.addRun(new TextRun('Н.В.Иванюшина').size(28)),
+        paragraph2.addRun(new TextRun('' + document.querySelector('.secretary').textContent).size(28)),
+        paragraph3.addRun(new TextRun('члены профсоюзного комитета – ' + document.querySelector('.present-people').textContent).size(28)),
+        new Paragraph().addRun(new TextRun('Повестка дня:').bold().size(28)),
+        new Paragraph().addRun(new TextRun('3. ' + document.querySelector('.title-title-input').value).tab().size(28)),
+        new Paragraph().addRun(new TextRun('3. СЛУШАЛИ: ').bold().size(28)),
+        new Paragraph().addRun(new TextRun(document.querySelector('.speakers').textContent).size(28)),
+        new Paragraph().addRun(new TextRun('РЕШИЛИ: ').bold().size(28)),
+        new Paragraph().addRun(new TextRun('    1.  ').bold().size(28)),
+        paragraph4.addRun(new TextRun('«за» - '+document.querySelector('.voted-for').value+' чел.,').size(28)),
+        new Paragraph().addRun(new TextRun('            «против» - '+document.querySelector('.voted-against').value+' чел.,').size(28)),
+        new Paragraph().addRun(new TextRun('            «воздержался» - '+document.querySelector('.abstained').value+' чел.').size(28)),
+        new Paragraph().addRun(new TextRun('Верно').size(28)),
+        new Paragraph().addRun(new TextRun('Председатель                                               Н.В.Иванюшина').size(28)),
+        new Paragraph().addRun(new TextRun(document.querySelector('.date-input').value).size(28))
     ];
 
     for (let text of textArray) {
-        doc.addParagraph(new Paragraph().addRun(text.size(28)));
+        doc.addParagraph(text);
     }
 
     // doc.addParagraph(paragraph);
     const packer = new Packer();
 
-    packer.toBlob(doc).then(blob => saveAs(blob, "example.docx"));
+    packer.toBlob(doc).then(blob => saveAs(blob, "protocol.docx"));
 }
 
 const toWordButton = document.querySelector('.to-word-btn');
