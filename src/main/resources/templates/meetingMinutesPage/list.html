@@ -6,17 +6,17 @@
                 <div class="some-text" th:text="'Новый протокол заседания'">
                 </div>
                 <div class="new-meeting-minute-inputs new-inputs">
-                    <input type="number" min="1" class="title-input new-meeting-minute-input"
+                    <input type="number" min="1" class="number-input title-input new-meeting-minute-input"
                            placeholder="Номер протокола"
                            autofocus required="required" th:field="${newMeetingMinute.meetingMinuteNumber}"/>
                     <input type="date" class="date-input new-meeting-minute-input" placeholder="Дата протокола"
                            autofocus="true" required="required" th:field="${newMeetingMinute.meetingMinuteDate}"/>
-                    <input class="title-input new-meeting-minute-input" placeholder="Тема заседания"
+                    <input class="title-title-input title-input new-meeting-minute-input" placeholder="Тема заседания"
                            autofocus required="required" th:field="${newMeetingMinute.meetingMinuteTheme}"/>
                     <select required name="unionMember.unionMemberId"
                             onchange="
                                     let secretary = document.querySelector('.secretary');
-                                    secretary.textContent = this.options[this.value].text;
+                                    secretary.textContent = this.options[options.selectedIndex].text;
                         ">
                         <option disabled value="" selected>Выберите секретаря</option>
                         <option th:each="unionMember : ${unionMembers}" th:value="${unionMember.unionMemberId}"
@@ -26,9 +26,9 @@
                     <select required name="unionMember.unionMemberId"
                             onchange="
                                     let presentPeople = document.querySelector('.present-people');
-                                    console.log(presentPeople.text)
-                                    if(presentPeople.textContent === '') presentPeople.textContent = this.options[this.value].text;
-                                    else presentPeople.textContent = presentPeople.textContent + ', ' + this.options[this.value].text;
+                                    console.log(this.options[options.selectedIndex].text);
+                                    if(presentPeople.textContent === '') presentPeople.textContent = this.options[options.selectedIndex].text;
+                                    else presentPeople.textContent = presentPeople.textContent + ', ' + this.options[options.selectedIndex].text;
                         ">
                         <option disabled value="" selected>Выберите присутствующих</option>
 

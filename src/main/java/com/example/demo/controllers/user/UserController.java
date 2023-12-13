@@ -76,7 +76,7 @@ public class UserController {
         autoCreateEmptyParent();
         autoCreateEmptyMeetingMinute();
         autoCreateRetireePosition();
-        autoCreateEmptyUnionMember();
+//        autoCreateEmptyUnionMember();
         if (securityService.isAuthenticated()) {
             return "redirect:/";
         }
